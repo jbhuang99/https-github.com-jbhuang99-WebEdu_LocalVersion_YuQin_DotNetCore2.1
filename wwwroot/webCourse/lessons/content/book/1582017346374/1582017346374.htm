@@ -1,0 +1,732 @@
+﻿<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:宋体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:等线;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:微软雅黑;
+	panose-1:2 11 5 3 2 2 4 2 2 4;}
+@font-face
+	{font-family:"\@微软雅黑";
+	panose-1:2 11 5 3 2 2 4 2 2 4;}
+@font-face
+	{font-family:"\@等线";
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"\@宋体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:8.0pt;
+	margin-left:0in;
+	line-height:107%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+.MsoChpDefault
+	{font-family:"Calibri",sans-serif;}
+.MsoPapDefault
+	{margin-bottom:8.0pt;
+	line-height:107%;}
+ /* Page Definitions */
+ @page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US link=blue vlink="#954F72">
+
+<div class=WordSection1>
+
+<p class=MsoNormal><span lang=ZH-CN style='font-family:"微软雅黑",sans-serif;
+color:#333333;background:white'>变量的定义（</span><span style='font-family:"微软雅黑",sans-serif;
+color:#333333;background:white'>definition<span lang=ZH-CN>）</span>:<span
+lang=ZH-CN>用于为变量分配存储空间，还可以为变量指定初始值。在一个程序中，变量有且仅有一个定义；</span></span><span
+style='font-family:"微软雅黑",sans-serif;color:#333333'><br>
+<span lang=ZH-CN style='background:white'>变量的声明（</span><span style='background:
+white'>declaration<span lang=ZH-CN>）：用于向程序表明变量的类型和名字。定义也是声明：当定义变量时我们声明了它的类型和名字。可以通过使用</span>extern<span
+lang=ZH-CN>关键字声明变量名而不定义它。</span></span><br>
+<span lang=ZH-CN style='background:white'>以上解释讲得还是比较清楚的，有分配空间的叫定义，没分配空间的叫声明。好吧，你不知道什么时候分配什么时候没分配。让我们换一种说法。</span><br>
+<span lang=ZH-CN style='background:white'>“定义包含了声明”，这说明声明包括定义。所以诸如</span><span
+style='background:white'>int a;extern int a;<span lang=ZH-CN>之类的一定是声明。那是不是定义还要接着往下看；</span></span><br>
+<span lang=ZH-CN style='background:white'>如果程序前面都没有出现过</span><span
+style='background:white'>a<span lang=ZH-CN>这个变量，这时你要使用</span>a<span lang=ZH-CN>，你必须让程序知道你要使用</span>a<span
+lang=ZH-CN>这个变量了。这时候你写入</span>int a;<span lang=ZH-CN>以前没有</span>a<span
+lang=ZH-CN>这个变量的，现在程序为了记住它，就得为他分配空间，于是这是个定义。</span></span><br>
+<span lang=ZH-CN style='background:white'>如果程序包含的其他文件里已经出现过</span><span
+style='background:white'>a<span lang=ZH-CN>了，这证明程序已经为</span>a</span></span><a
+href="https://www.baidu.com/s?wd=%E5%88%86%E9%85%8D%E5%86%85%E5%AD%98&amp;tn=SE_PcZhidaonwhc_ngpagmjz&amp;rsv_dl=gh_pc_zhidao"
+target="_blank"><span lang=ZH-CN style='font-family:"微软雅黑",sans-serif;
+color:#3F88BF;background:white'>分配内存</span></a><span lang=ZH-CN
+style='font-family:"微软雅黑",sans-serif;color:#333333;background:white'>，这时你要使用</span><span
+style='font-family:"微软雅黑",sans-serif;color:#333333;background:white'>a<span
+lang=ZH-CN>就方便很多了。你只需要告诉程序，这个</span>a<span lang=ZH-CN>在其他地方定义过了，于是你写入</span>extern
+int a;</span><span style='font-family:"微软雅黑",sans-serif;color:#333333'><br>
+<span lang=ZH-CN style='background:white'>对于</span><span style='background:
+white'>int a;<span lang=ZH-CN>来说，它既是定义又是声明；对于</span>extern int a;<span
+lang=ZH-CN>来说，它是声明不是定义。一般为了叙述方便</span>,<span lang=ZH-CN>把建立存储空间的声明称定义</span>,<span
+lang=ZH-CN>而不把建立存储空间的声明称为声明</span>.</span></span></p>
+
+<p class=MsoNormal><span lang=ZH-CN style='font-family:等线'>如果是指变量的声明和定义：</span></p>
+
+<p class=MsoNormal><span lang=ZH-CN style='font-family:等线'>从编译原理上来说，声明是仅仅告诉编译器，有个某类型的变量会被使用，但是编译器并不会为它分配任何内存。而定义就是分配了内存。</span></p>
+
+<p class=MsoNormal><span lang=ZH-CN style='font-family:等线'>对于下面的两句代码：</span></p>
+
+<p class=MsoNormal>void Func()</p>
+
+<p class=MsoNormal>{</p>
+
+<p class=MsoNormal>int a;</p>
+
+<p class=MsoNormal>int b=1;</p>
+
+<p class=MsoNormal>a=0;</p>
+
+<p class=MsoNormal>}</p>
+
+<p class=MsoNormal><span lang=ZH-CN style='font-family:等线'>对于第一行代码，编译器不会做任何事，它不会为它在栈中分配一点东西，直到第三句，</span>a=0;<span
+lang=ZH-CN style='font-family:等线'>时，编译器才会将其压入栈中。而对于</span>int b=0;<span
+lang=ZH-CN style='font-family:等线'>这一句，编译器就会生成一条指令，为它赋值。如果反汇编，看到的代码可能是这样的：</span></p>
+
+<p class=MsoNormal>push 1;</p>
+
+<p class=MsoNormal>push 0;</p>
+
+<p class=MsoNormal><span lang=ZH-CN style='font-family:等线'>当然，并不一定编译器就会样做，也有可能在声明</span>int
+a<span lang=ZH-CN style='font-family:等线'>时，编译器就会把一个默认值入栈，到第三条再为其赋值，这要看编译器的具体取舍，所以，声明不一定不是定义，而定义一定是定义。</span></p>
+
+<p class=MsoNormal><span lang=ZH-CN style='font-family:等线'>但是，下面的声明，一定仅仅是声明：</span></p>
+
+<p class=MsoNormal>extern int a;</p>
+
+<p class=MsoNormal><span lang=ZH-CN style='font-family:等线'>这表时，有一个</span>int<span
+lang=ZH-CN style='font-family:等线'>变量</span>a<span lang=ZH-CN style='font-family:
+等线'>，它一定是在另外其他地方定义的，所以编译器此时一定不会做什么分配内存的事，因为它就是声明，仅仅表明下面的代码引用了一个符号，而这个符号是</span>int<span
+lang=ZH-CN style='font-family:等线'>类型的</span>a<span lang=ZH-CN style='font-family:
+等线'>而已。</span></p>
+
+<p class=MsoNormal><span lang=ZH-CN style='font-family:等线'>如果是指函数的声明和定义：</span></p>
+
+<p class=MsoNormal><span lang=ZH-CN style='font-family:等线'>声明：一般在头文件里，对编译器说：这里我有一个函数叫</span>function()
+<span lang=ZH-CN style='font-family:等线'>让编译器知道这个函数的存在。</span></p>
+
+<p class=MsoNormal><span lang=ZH-CN style='font-family:等线'>定义：一般在源文件里，具体就是函数的实现过程</span><span
+lang=ZH-CN> </span><span lang=ZH-CN style='font-family:等线'>写明函数体。</span></p>
+
+<p class=MsoNormal>1. <span lang=ZH-CN style='font-family:等线'>头文件的作用</span></p>
+
+<p class=MsoNormal>&nbsp; &nbsp; &nbsp; <span lang=ZH-CN style='font-family:
+等线'>在</span>C++<span lang=ZH-CN style='font-family:等线'>中主要有两类文件</span>.cpp<span
+lang=ZH-CN style='font-family:等线'>文件和</span>.h<span lang=ZH-CN
+style='font-family:等线'>；编译预处理时，</span>.h<span lang=ZH-CN style='font-family:
+等线'>文件可以被多个源文件通过</span>#include<span lang=ZH-CN style='font-family:等线'>引用共享。这样有一个好处，就是在一处进行了声明的变量或者函数能够被多个文件引用，不需要声明多次。</span></p>
+
+<p class=MsoNormal>2. <span lang=ZH-CN style='font-family:等线'>头文件使用的注意事项</span></p>
+
+<p class=MsoNormal>&nbsp; &nbsp; 1.&nbsp; <span lang=ZH-CN style='font-family:
+等线'>不要随意在头文件定义变量和函数；</span></p>
+
+<p class=MsoNormal>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span lang=ZH-CN
+style='font-family:等线'>一般在头文件中，只声明函数和变量，而不进行定义，例如</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp; &nbsp; &nbsp; <span lang=ZH-CN style='font-family:
+等线'>声明：</span>&nbsp;extern&nbsp;&nbsp;int a;<span lang=ZH-CN style='font-family:
+等线'>和</span>void f();</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp; &nbsp; &nbsp; <span lang=ZH-CN style='font-family:
+等线'>定义：如果写上</span>int a;<span lang=ZH-CN style='font-family:等线'>或者</span>void
+f() {}</p>
+
+<p class=MsoNormal><span lang=ZH-CN style='font-family:等线'>但是也有例外的情况，常量对象（</span>const<span
+lang=ZH-CN style='font-family:等线'>对象）在声明的时候就需要进行赋值（即进行定义）。因为全局的</span>const<span
+lang=ZH-CN style='font-family:等线'>对象默认只在当前文件中有效。把这样的对象写进头文件中，即使它被包含到其他多个</span>.cpp<span
+lang=ZH-CN style='font-family:等线'>文件中，这个对象也都只在包含它的文件中有效，对其他文件来说是不可见的，所以便不会导致多重定义。</span></p>
+
+<p class=MsoNormal>&nbsp; &nbsp; &nbsp; &nbsp;<span lang=ZH-CN
+style='font-family:等线'>此外，头文件中可以定义内联函数（</span>inline<span lang=ZH-CN
+style='font-family:等线'>）和类（</span>class<span lang=ZH-CN style='font-family:
+等线'>）的定义，包括类的成员函数的定义（注：需要放在类内部）；</span></p>
+
+<p class=MsoNormal>&nbsp; &nbsp; &nbsp; <span lang=ZH-CN style='font-family:
+等线'>但是很多时候，我们会不自觉的在头文件中定义变量，或者说我就想在头文件里面定义（虽然非常不建议这样做），怎么办呢？</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span lang=ZH-CN
+style='font-family:等线'>使用</span> #ifndef,#define, #endif<span lang=ZH-CN
+style='font-family:等线'>或者使用</span>#pragma once<span lang=ZH-CN
+style='font-family:等线'>；</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span lang=ZH-CN
+style='font-family:等线'>例如下面这段代码；</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>#ifndef CB_H    //#pragma one</p>
+
+<p class=MsoNormal>#define CB_H</p>
+
+<p class=MsoNormal> </p>
+
+<p class=MsoNormal>#include&quot;CA.h&quot;</p>
+
+<p class=MsoNormal> </p>
+
+<p class=MsoNormal>class B</p>
+
+<p class=MsoNormal>{</p>
+
+<p class=MsoNormal>                A *ss;</p>
+
+<p class=MsoNormal>};</p>
+
+<p class=MsoNormal> </p>
+
+<p class=MsoNormal>#endif</p>
+
+<p class=MsoNormal>&nbsp; &nbsp; &nbsp; &nbsp;<span lang=ZH-CN
+style='font-family:等线'>很简单的几行，就能够告诉编译器，这个头文件只编译一次，所以不会多次定义；</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp; &nbsp; &nbsp; &nbsp;<span lang=ZH-CN
+style='font-family:等线'>在大家使用</span>Visual Studio<span lang=ZH-CN
+style='font-family:等线'>的时候，若是使用控制台程序，生成的头文件中会自动含有</span>&nbsp;&nbsp;#ifndef,#define,
+#endif<span lang=ZH-CN style='font-family:等线'>。</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp; &nbsp; &nbsp; &nbsp;<span lang=ZH-CN
+style='font-family:等线'>大家自己写头文件的时候应该养成加入这三句话的习惯，可以免去很多不必要的麻烦；</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp; &nbsp;2. <span lang=ZH-CN style='font-family:等线'>头文件中类的相互引用；</span></p>
+
+<p class=MsoNormal>&nbsp; &nbsp; &nbsp; &nbsp;<span lang=ZH-CN
+style='font-family:等线'>类在</span>C++<span lang=ZH-CN style='font-family:等线'>中经常被使用，类的所带来的继承和多态让它很强大，可以实现很多功能。大家都知道，父类和子类之间不能相互继承；但是在有些时候，两个类之间需要互相引用或者说父子之间不得不相互包含对方类型的变量，问题就来了，那怎么办呢？</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp; &nbsp;<span lang=ZH-CN style='font-family:等线'>我们看下面这段代码；</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>#ifndef CB_H</p>
+
+<p class=MsoNormal>#define CB_H</p>
+
+<p class=MsoNormal> </p>
+
+<p class=MsoNormal>#include&quot;CA.h&quot;</p>
+
+<p class=MsoNormal> </p>
+
+<p class=MsoNormal>//class A;</p>
+
+<p class=MsoNormal> </p>
+
+<p class=MsoNormal>class B</p>
+
+<p class=MsoNormal>{</p>
+
+<p class=MsoNormal>                A *ss;</p>
+
+<p class=MsoNormal>};</p>
+
+<p class=MsoNormal> </p>
+
+<p class=MsoNormal>#endif</p>
+
+<p class=MsoNormal>&nbsp; &nbsp; &nbsp; &nbsp;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>#ifndef CA_H</p>
+
+<p class=MsoNormal>#define CA_H</p>
+
+<p class=MsoNormal> </p>
+
+<p class=MsoNormal>#include&quot;CB.h&quot;</p>
+
+<p class=MsoNormal> </p>
+
+<p class=MsoNormal>class B;</p>
+
+<p class=MsoNormal> </p>
+
+<p class=MsoNormal>class A</p>
+
+<p class=MsoNormal>{</p>
+
+<p class=MsoNormal>                B *ss;</p>
+
+<p class=MsoNormal>                //B s;</p>
+
+<p class=MsoNormal>};</p>
+
+<p class=MsoNormal> </p>
+
+<p class=MsoNormal>#endif</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp; &nbsp; &nbsp; &nbsp;<span lang=ZH-CN
+style='font-family:等线'>在代码中类</span>A<span lang=ZH-CN style='font-family:等线'>中有类</span>B<span
+lang=ZH-CN style='font-family:等线'>的变量，类</span>B<span lang=ZH-CN
+style='font-family:等线'>中也有</span>A<span lang=ZH-CN style='font-family:等线'>的变量，</span></p>
+
+<p class=MsoNormal>&nbsp; &nbsp; &nbsp; &nbsp;<span lang=ZH-CN
+style='font-family:等线'>因为我们在</span>CA.H<span lang=ZH-CN style='font-family:
+等线'>的定义中除了</span>#include &quot;CB.h&quot;<span lang=ZH-CN style='font-family:
+等线'>还加入了</span>class B<span lang=ZH-CN style='font-family:等线'>，这样一行，这段代码并不会报错，大家可以试试注释掉这样的一行，看看是否会报错。</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp; &nbsp; &nbsp; <span lang=ZH-CN style='font-family:
+等线'>这样一个前向申明就避免了编译错误，否则</span>B<span lang=ZH-CN style='font-family:等线'>是无法被识别的数据类型；</span>
+&nbsp; &nbsp;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp; &nbsp; &nbsp; <span lang=ZH-CN style='font-family:
+等线'>那么又有一个问题了，为什么实在</span>CA.H<span lang=ZH-CN style='font-family:等线'>中加入</span>class
+B<span lang=ZH-CN style='font-family:等线'>，而不是在</span>CB.H<span lang=ZH-CN
+style='font-family:等线'>中加入</span>class A<span lang=ZH-CN style='font-family:
+等线'>呢？</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp; &nbsp; &nbsp; <span lang=ZH-CN style='font-family:
+等线'>其实都是一样的，这取决于在各个</span>CPP<span lang=ZH-CN style='font-family:等线'>文件中你先引用（</span>#include<span
+lang=ZH-CN style='font-family:等线'>）哪个头文件；</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp; &nbsp; &nbsp; <span lang=ZH-CN style='font-family:
+等线'>例如我是先引用的</span>CB_H<span lang=ZH-CN style='font-family:等线'>；根据引用关系先编译“</span>CB.h<span
+lang=ZH-CN style='font-family:等线'>”，而在“</span>CB.h<span lang=ZH-CN
+style='font-family:等线'>”中又引用了“</span>CA.h<span lang=ZH-CN style='font-family:
+等线'>”。这时候又编译“</span>CA.h<span lang=ZH-CN style='font-family:等线'>”，然后</span>A<span
+lang=ZH-CN style='font-family:等线'>中又有了</span>B<span lang=ZH-CN
+style='font-family:等线'>类的数据类型，这个是未知的，所以先声明一个</span>&nbsp;class B<span
+lang=ZH-CN style='font-family:等线'>；这样的一个声明就告诉编译器，</span>class B <span
+lang=ZH-CN style='font-family:等线'>在别处定义。</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>#include &quot;CB.h&quot;</p>
+
+<p class=MsoNormal>#include &quot;CA.h&quot;</p>
+
+<p class=MsoNormal>#include &lt;iostream&gt;</p>
+
+<p class=MsoNormal> </p>
+
+<p class=MsoNormal>using namespace std;</p>
+
+<p class=MsoNormal> </p>
+
+<p class=MsoNormal>void main()</p>
+
+<p class=MsoNormal>{</p>
+
+<p class=MsoNormal>                system(&quot;pause&quot;);</p>
+
+<p class=MsoNormal>                return;</p>
+
+<p class=MsoNormal>}</p>
+
+<p class=MsoNormal>&nbsp; &nbsp; &nbsp; &nbsp; <span lang=ZH-CN
+style='font-family:等线'>所以就在</span>CA.h<span lang=ZH-CN style='font-family:等线'>中加入</span>class
+B<span lang=ZH-CN style='font-family:等线'>，若两者交换了位置，相应的就需要在</span>CB.h<span
+lang=ZH-CN style='font-family:等线'>中加入</span>class A<span lang=ZH-CN
+style='font-family:等线'>。或者可以将</span>class A<span lang=ZH-CN style='font-family:
+等线'>也在“</span>CB.h<span lang=ZH-CN style='font-family:等线'>”中加上，这样的话，不用担心头文件的</span>#include<span
+lang=ZH-CN style='font-family:等线'>顺序问题。</span></p>
+
+<p class=MsoNormal><span lang=ZH-CN style='font-family:等线'>前言</span></p>
+
+<p class=MsoNormal>&nbsp;&nbsp;&nbsp; <span lang=ZH-CN style='font-family:等线'>之前写过一篇《</span>C++<span
+lang=ZH-CN style='font-family:等线'>中头文件的使用》，那篇文章主要讲述</span>C++<span lang=ZH-CN
+style='font-family:等线'>中头文件的使用以及注意问题，但是总觉得写的很浅，很简单。没有把问题讲清楚，所以今天想好好整理一下思路，讲一讲</span>C++<span
+lang=ZH-CN style='font-family:等线'>中的头文件到底是干什么的。本篇博客的主要是把自己早前学习</span>C++<span
+lang=ZH-CN style='font-family:等线'>时候做的一些笔记整理了一下，来源也主要是论坛上一些大神的博客，以及一些</span>C++<span
+lang=ZH-CN style='font-family:等线'>学习的入门书籍。</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><span lang=ZH-CN style='font-family:等线'>什么是头文件（</span>.h<span
+lang=ZH-CN style='font-family:等线'>）</span></p>
+
+<p class=MsoNormal>&nbsp;&nbsp;&nbsp; <span lang=ZH-CN style='font-family:等线'>头文件是扩展名为</span>&nbsp;.h&nbsp;<span
+lang=ZH-CN style='font-family:等线'>的文件，与源文件（</span>.cpp<span lang=ZH-CN
+style='font-family:等线'>）一样，头文件中也是</span>C++<span lang=ZH-CN style='font-family:
+等线'>的源代码，头文件中包含了</span> C++<span lang=ZH-CN style='font-family:等线'>中函数、类、对象等的声明和宏定义，它可以被多个源文件通过</span>#include<span
+lang=ZH-CN style='font-family:等线'>引用共享。</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><span lang=ZH-CN style='font-family:等线'>头文件的价值</span></p>
+
+<p class=MsoNormal>&nbsp; &nbsp; &nbsp;<span lang=ZH-CN style='font-family:
+等线'>一个事物存在，必有其存在的价值和意义，头文件也一样。</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp; &nbsp; &nbsp; C++<span lang=ZH-CN style='font-family:
+等线'>中有“单一定义”规则，即一个对象只能被定义一次，如果在一个源文件中定义了一个函数，其他的源文件想要使用这个函数就需要在使用前声明一下这个函数，在编译结束之后，编译器链接的时候再去查找这些函数的定义。</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp; &nbsp; &nbsp; <span lang=ZH-CN style='font-family:
+等线'>当只有一两个函数，源文件的数目也不多的时候，我们完全可以直接在源文件中声明这些函数或者变量。但是当我们面临一个大的项目时，几百个函数，非常多的变量，</span>100<span
+lang=ZH-CN style='font-family:等线'>个源文件。如果每个函数都在每个源文件中声明。那就太麻烦，太费事了。</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp; &nbsp; &nbsp; <span lang=ZH-CN style='font-family:
+等线'>所以，为了达到在不同的源文件中声明的一致性，为了省去这些繁琐又重复的过程，我们可以把这些对象的声明都放在少数几个文件中，需要用到这些声明的时候再到这些文件中查找，这样的文件，就是头文件。</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><span lang=ZH-CN style='font-family:等线'>头文件的分类</span></p>
+
+<p class=MsoNormal>&nbsp; &nbsp; <span lang=ZH-CN style='font-family:等线'>按照来源的不同，有两种类型的头文件：程序员编写的头文件和标准库（编译器或者其他库的头文件）。</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp; &nbsp; <span lang=ZH-CN style='font-family:等线'>对于程序员自己编写的头文件的包含使用</span>&quot;filename&quot;<span
+lang=ZH-CN style='font-family:等线'>；</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>#include &quot;CA.h&quot;</p>
+
+<p class=MsoNormal><span lang=ZH-CN style='font-family:等线'>对于标准库头文件的包含使用</span>&lt;
+filename&gt;;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>#include &lt;iostream&gt;</p>
+
+<p class=MsoNormal><span lang=ZH-CN style='font-family:等线'>编译过程中的头文件</span></p>
+
+<p class=MsoNormal>&nbsp; &nbsp; &nbsp; C++<span lang=ZH-CN style='font-family:
+等线'>代码的编译主要通过以下几个过程：预编译</span>-&gt;<span lang=ZH-CN style='font-family:等线'>编译</span>-&gt;<span
+lang=ZH-CN style='font-family:等线'>链接，最后生成可执行文件。</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp; &nbsp; &nbsp; <span lang=ZH-CN style='font-family:
+等线'>切记，头文件是不参与编译的，编译器只对源文件进行编译。编译器首先对源文件进行预处理，这一步叫预编译。预编译的时候完成头文件中的宏的处理，并且根据</span>#include<span
+lang=ZH-CN style='font-family:等线'>指令将头文件展开；</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp; &nbsp; &nbsp; <span lang=ZH-CN style='font-family:
+等线'>我们看一个简单的例子，下面是一个头文件</span>CA.h</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>#ifndef CA_H</p>
+
+<p class=MsoNormal>#define CA_H</p>
+
+<p class=MsoNormal> </p>
+
+<p class=MsoNormal>int Fun();</p>
+
+<p class=MsoNormal>#endif</p>
+
+<p class=MsoNormal>&nbsp; &nbsp; &nbsp; &nbsp;<span lang=ZH-CN
+style='font-family:等线'>有两个源文件</span>A.cpp<span lang=ZH-CN style='font-family:
+等线'>与</span>B.cpp<span lang=ZH-CN style='font-family:等线'>都包含了</span>CA.h</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp; &nbsp; &nbsp; &nbsp;A.cpp<span lang=ZH-CN
+style='font-family:等线'>；</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>#include &quot;CA.h&quot;</p>
+
+<p class=MsoNormal> </p>
+
+<p class=MsoNormal>int Fun()</p>
+
+<p class=MsoNormal>{</p>
+
+<p class=MsoNormal>                return 1;</p>
+
+<p class=MsoNormal>}</p>
+
+<p class=MsoNormal>&nbsp; &nbsp; &nbsp; &nbsp;B.cpp;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>#include &quot;CA.h&quot;</p>
+
+<p class=MsoNormal> </p>
+
+<p class=MsoNormal>int Fun1()</p>
+
+<p class=MsoNormal>{</p>
+
+<p class=MsoNormal>                return Fun() + 1;</p>
+
+<p class=MsoNormal>}</p>
+
+<p class=MsoNormal>&nbsp; &nbsp; &nbsp; <span lang=ZH-CN style='font-family:
+等线'>经过预编译后，这两个源文件分别变为；</span>&nbsp; &nbsp;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>#ifndef CA_H</p>
+
+<p class=MsoNormal>#define CA_H</p>
+
+<p class=MsoNormal> </p>
+
+<p class=MsoNormal>int Fun();</p>
+
+<p class=MsoNormal>#endif</p>
+
+<p class=MsoNormal>int Fun()</p>
+
+<p class=MsoNormal>{</p>
+
+<p class=MsoNormal>    return 1;</p>
+
+<p class=MsoNormal>}</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>#ifndef CA_H</p>
+
+<p class=MsoNormal>#define CA_H</p>
+
+<p class=MsoNormal> </p>
+
+<p class=MsoNormal>int Fun();</p>
+
+<p class=MsoNormal>#endif</p>
+
+<p class=MsoNormal>int Fun1()</p>
+
+<p class=MsoNormal>{ </p>
+
+<p class=MsoNormal>    return Fun() + 1;</p>
+
+<p class=MsoNormal>} </p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><span lang=ZH-CN style='font-family:等线'>这样就实现了再</span>A.cpp<span
+lang=ZH-CN style='font-family:等线'>与</span>B.cpp<span lang=ZH-CN
+style='font-family:等线'>中对函数</span>int Fun<span lang=ZH-CN style='font-family:
+等线'>（）的声明。</span></p>
+
+<p class=MsoNormal><span lang=ZH-CN style='font-family:等线'>头文件中写些什么</span></p>
+
+<p class=MsoNormal>&nbsp; &nbsp; &nbsp; &nbsp;<span lang=ZH-CN
+style='font-family:等线'>在上篇博客中写到头文件本身不参与编译，但是它们被包含到源文件中，那么头文件里面应该写一下什么呢？</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp; &nbsp; &nbsp; &nbsp;<span lang=ZH-CN
+style='font-family:等线'>根据“单一定义”原则，我们可以很明显的知道，头文件不应该放对象的定义，只能写对象的声明。如果写有对象的定义，相当于在所有包含该头文件的源文件中都对其进行了定义，这是不合法的。</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp; &nbsp; &nbsp; &nbsp;<span lang=ZH-CN
+style='font-family:等线'>因此，下面的这些内容应该放在头文件中：函数原型声明、全局变量声明、自己定义的宏和类型等。</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp; &nbsp; &nbsp; <span lang=ZH-CN style='font-family:
+等线'>下面这些内容不应该放在头文件中：全局变量的定义、外部变量的定义、静态变量和静态函数的的定义、在类体之外的类成员函数的定义等。头文件应该包含和不应该包含什么内容，都是为了满足头文件被多个源文件包含而不引发编译错误。</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp; &nbsp; &nbsp; &nbsp; <span lang=ZH-CN
+style='font-family:等线'>但是有三个例外是可以写在头文件中的；</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><span lang=ZH-CN style='font-family:等线'>头文件中可以写</span>const<span
+lang=ZH-CN style='font-family:等线'>对象的定义</span></p>
+
+<p class=MsoNormal>&nbsp; &nbsp; &nbsp; &nbsp;<span lang=ZH-CN
+style='font-family:等线'>因为全局的</span>const<span lang=ZH-CN style='font-family:
+等线'>对象默认只在当前文件中有效，把</span>const<span lang=ZH-CN style='font-family:等线'>对象写进头文件中，即使它被包含到其他多个</span>.cpp<span
+lang=ZH-CN style='font-family:等线'>文件中，这个对象也都只在包含它的文件中有效，对其他文件来说是不可见的，所以便不会导致多重定义。同理，</span>static<span
+lang=ZH-CN style='font-family:等线'>对象的定义也可以放进头文件。</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><span lang=ZH-CN style='font-family:等线'>头文件中可以写内联函数（</span>inline<span
+lang=ZH-CN style='font-family:等线'>）的定义</span></p>
+
+<p class=MsoNormal>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;inline<span lang=ZH-CN
+style='font-family:等线'>函数是需要编译器在遇到它的地方根据它的定义把它内联展开的，而并非是普通函数那样可以先声明再链接的，内联函数并不会参与链接，所以编译器就需要在编译时看到内联函数的完整定义才行。</span>C++<span
+lang=ZH-CN style='font-family:等线'>规定，内联函数可以在程序中定义多次，只要内联函数的定义在一个</span>.cpp<span
+lang=ZH-CN style='font-family:等线'>文件中只出现一次，并且在所有的</span>.cpp<span lang=ZH-CN
+style='font-family:等线'>文件中，这个内联函数的定义是一样的，就能通过编译。那么把内联函数的定义放进一个头文件中就能满足以上的要求，何乐不为呢。</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><span lang=ZH-CN style='font-family:等线'>头文件中可以写类</span><span
+lang=ZH-CN> </span><span lang=ZH-CN style='font-family:等线'>（</span>class<span
+lang=ZH-CN style='font-family:等线'>）的定义</span></p>
+
+<p class=MsoNormal>&nbsp; &nbsp; &nbsp; <span lang=ZH-CN style='font-family:
+等线'>在程序中创建一个类的对象时，编译器只有在这个类的定义完全可见的情况下，才能知道这个类的对象应该如何布局，所以，关于类的定义的要求，跟内联函数是基本一样的。所以把类的定义放进头文件，在使用到这个类的</span>.cpp<span
+lang=ZH-CN style='font-family:等线'>文件中去包含这个头文件，是一个很好的做法。类的定义中包含着数据成员和成员函数。数据成员是要等到具体的对象被创建时才会被定义，被分配空间，但函数成员却是需要在一开始就被定义的。</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp; &nbsp; &nbsp; &nbsp;<span lang=ZH-CN
+style='font-family:等线'>我们可以直接把函数成员的实现代码也写进类定义中。在</span>C++<span lang=ZH-CN
+style='font-family:等线'>的中，如果函数成员在类的定义体中被定义，那么编译器会视这个函数为内联的。因此是合法的。注意一下，如果把函数成员的定义写在类定义的头文件中，而没有写进类定义范围内，这是非法的，因为这个函数成员此时就不是内联的了，如果该头文件被两个及以上的</span>.cpp<span
+lang=ZH-CN style='font-family:等线'>文件同时包含，这个函数成员就被重定义了。</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><span lang=ZH-CN style='font-family:等线'>头文件的使用</span></p>
+
+<p class=MsoNormal>&nbsp; &nbsp; &nbsp; &nbsp;<span lang=ZH-CN
+style='font-family:等线'>在《</span>C++<span lang=ZH-CN style='font-family:等线'>中头文件的使用》中已经讲过了关于头文件的使用规则，这里再简单的讲一下。</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp; &nbsp; &nbsp; &nbsp;<span lang=ZH-CN
+style='font-family:等线'>如果头文件中只有对象的声明，那么他被引用多少次都可以。但是有时候头文件会被隐含的包含多次，而在头文件中你使用了上述三种情况中的任意一种情况。例如</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp; &nbsp; &nbsp; &nbsp;<span lang=ZH-CN
+style='font-family:等线'>在</span>CB.h<span lang=ZH-CN style='font-family:等线'>中定义了一个</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>const int F=10;</p>
+
+<p class=MsoNormal>&nbsp; &nbsp; &nbsp; CA.h<span lang=ZH-CN style='font-family:
+等线'>中包含了</span>CB.h<span lang=ZH-CN style='font-family:等线'>，在</span>main.cpp<span
+lang=ZH-CN style='font-family:等线'>中同时包含了</span>CA.h<span lang=ZH-CN
+style='font-family:等线'>与</span>CB.h<span lang=ZH-CN style='font-family:等线'>。那么相当于</span>CB.h<span
+lang=ZH-CN style='font-family:等线'>被包含</span>main.cpp<span lang=ZH-CN
+style='font-family:等线'>了两次，那么在进行预编译时，就定义了两个</span>F<span lang=ZH-CN
+style='font-family:等线'>，这是不合法的。</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><span lang=ZH-CN style='font-family:等线'>或者很多人喜欢在头文件中写这样的语句：</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>int a;</p>
+
+<p class=MsoNormal><span lang=ZH-CN style='font-family:等线'>其实这是定义，因为编译器会默认初始化为</span>0<span
+lang=ZH-CN style='font-family:等线'>；</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><span lang=ZH-CN style='font-family:等线'>这写时候都会出现重复定义的错误。</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><span lang=ZH-CN style='font-family:等线'>大家可以使用</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><span lang=ZH-CN style='font-family:等线'>使用</span>
+#ifndef,#define, #endif<span lang=ZH-CN style='font-family:等线'>或者使用</span>#pragma
+once<span lang=ZH-CN style='font-family:等线'>；</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><span lang=ZH-CN style='font-family:等线'>详细的使用方法可以参考《</span>C++<span
+lang=ZH-CN style='font-family:等线'>中头文件的使用》。</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><span lang=ZH-CN style='font-family:等线'>完。。</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+</div>
+
+<!--右键菜单开始 --><div id='popupDiv' onclick='fnPopupClosePopup();' oncontextmenu='fnPopupContextMenu();' style='position:fixed;z-Index:1000;margin: 2px; border: 1px;   overflow:visible;  font-size: 11px; cursor: default;display:none;'><div style='position: relative;' onmouseover='fnPopupMouseOver();' onmouseout='fnPopupMouseOut();'><div title='刷新标题面' onclick='location.reload();'>刷新</div><div title='单击将在是否可以在线编辑课文的之间切换!' onclick='if(document.body.contentEditable==true) { document.body.contentEditable = false; } else { document.body.contentEditable = true;}'>课文编辑切换</div><div title='编辑后可保存编辑结果' onclick='fnSave();'>保存</div><div>帮助</div></div></div><!--右键菜单结束--><script id=sIdScriptAutoAddedForDynFunction1 src='../../../../common/script/content.js'></script><script id=sIdScriptAutoAddedForDynFunction2 src='../../../../common/script/Popup.js'></script><script id=sIdScriptAutoAddedForDynFunction3>document.body.onload=fnOnLoad;</script></body>
+
+</html>
